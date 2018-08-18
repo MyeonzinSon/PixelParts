@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Background.meta
+guid: a60da8edd3afef444a452d961336f21d
+=======
 guid: 7d853a6449379584ba98d876158a679a
+>>>>>>> 4c50dca9c1640504f4e4a06a29dc85e63bb69836:Assets/Background.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
