@@ -1,17 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 70efbf65c02bf064eaceb573a761b1ee
-=======
-<<<<<<< HEAD
-guid: 024b325162393744ab4b4ed5a495597f
-=======
-<<<<<<< HEAD
-guid: dc4545cfbd33fa14da5a8cf582757f84
-=======
-guid: dce2792a630bea747afbce20a336a41a
->>>>>>> 39c2dd0610393a1316ba0da19e9ba1a1756a79e8
->>>>>>> 560b988fc137518bf78ab9928c4ab433d19778be
->>>>>>> a71267bedc861c9510f2a75ab49c90c91acf28e1
+guid: 17c2e18a00f717549a7bc94e8d960336
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -87,19 +75,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD
-    spriteID: eafcc6b8c11d87c4d9f8796d2d0b6201
-=======
-<<<<<<< HEAD
-    spriteID: 0c6ff7178b1b1c14ebb5b9a6ec5cc1da
-=======
-<<<<<<< HEAD
-    spriteID: 0a0b5d5851446a549a20f5443ee48321
-=======
-    spriteID: 2b9c63fae3cd0fe4e881e9c74eecfd3a
->>>>>>> 39c2dd0610393a1316ba0da19e9ba1a1756a79e8
->>>>>>> 560b988fc137518bf78ab9928c4ab433d19778be
->>>>>>> a71267bedc861c9510f2a75ab49c90c91acf28e1
+    spriteID: ed73908f4ee94224689c0ee7fe54179c
     vertices: []
     indices: 
     edges: []
