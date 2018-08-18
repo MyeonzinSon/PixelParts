@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed;
+    public float jumpForce;
     Animator anim;
     bool isOnGround;
+    Rigidbody2D rb;
 	
 	void Start () {
         anim = GetComponent<Animator>();
-		
+        rb = GetComponent<Rigidbody2D>();
+     
 	}
 	
 	void Update () {
@@ -23,9 +26,9 @@ public class PlayerController : MonoBehaviour {
         {
             transform.Translate(+speed * Time.deltaTime, 0, 0);
         }
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.W))
         {
-            transform.Translate(0, +speed * Time.deltaTime, 0);
+            rb.AddForce(jumpForce * Vector2.up);
             anim.SetBool("jump", true);
         }
         if (Input.GetKey(KeyCode.S))
