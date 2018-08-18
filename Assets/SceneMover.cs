@@ -17,6 +17,6 @@ public class SceneMover : MonoBehaviour {
 
     void MoveScene()
     {
-        SceneManager.LoadScene("In game scene")
+        SceneManager.LoadScene("In game scene");
     }
 }
