@@ -27,7 +27,10 @@ public class PlayerController : MonoBehaviour {
         {
             rb.AddForce(jumpForce * Vector2.up);
         }
-    
+        else if(Input.GetKey(KeyCode.Z))
+        {
+
+        }
 
     }
 }
