@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: eb25faaae6da01b4fbab87ff074dc620
+<<<<<<< HEAD:Assets/Sprites/GUN.png.meta
+guid: 021796d0169ab914bb9af67c9d2bd5bd
 =======
-guid: ab022539bb6d6a142a38f86b977a9e24
->>>>>>> 3ea3477ffea78e59cca8d84638042d3f6fd92631
+guid: e4165be1df57a9f44be92b1bccbb3e3d
+>>>>>>> 459036fe9c7131b32da89b5f11e4f588114af6de:Assets/Sprites/GUN.png.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -79,11 +79,11 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD
-    spriteID: 1050bf7b2d6b8ef429fd05f80b9e1908
+<<<<<<< HEAD:Assets/Sprites/GUN.png.meta
+    spriteID: 885d6ef7f611b3c4bbd85859b4a012f4
 =======
-    spriteID: c18d985cca530d340adcd74cf58186bf
->>>>>>> 3ea3477ffea78e59cca8d84638042d3f6fd92631
+    spriteID: 7653dbe72cfa98648807c111baf5e89b
+>>>>>>> 459036fe9c7131b32da89b5f11e4f588114af6de:Assets/Sprites/GUN.png.meta
     vertices: []
     indices: 
     edges: []
