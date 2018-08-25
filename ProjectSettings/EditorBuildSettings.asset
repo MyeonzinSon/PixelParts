@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/scene/Introa.unity
+    guid: ff1565a951e6dea49ba9d45d1656cccc
+  m_configObjects: {}
