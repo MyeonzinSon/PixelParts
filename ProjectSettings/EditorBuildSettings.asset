@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/ff1565a951e6dea49ba9d45d1656cccc
+    guid: ff1565a951e6dea49ba9d45d1656cccc
   - enabled: 1
     path: Assets/scene/Introa.unity
-    guid: ff1565a951e6dea49ba9d45d1656cccc
+    guid: 0571616ecfb40764b9c098893f31be56
+  - enabled: 1
+    path: Assets/scene/In game scene.unity
+    guid: a86110c63996d6e47aab9dc6644d28bd
   m_configObjects: {}
