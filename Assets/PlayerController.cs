@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour {
     Animator anim;
     bool isOnGround;
     Rigidbody2D rb;
+    public weapon wp;
 	
 	void Start () {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        wp = GetComponentInChildren<weapon>();
      
 	}
 	
@@ -36,7 +38,10 @@ public class PlayerController : MonoBehaviour {
         {
             transform.Translate(0, -speed * Time.deltaTime, 0);
         }
-
+        if (Input.GetKey(KeyCode.E))
+        {
+            wp.Attack();
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
