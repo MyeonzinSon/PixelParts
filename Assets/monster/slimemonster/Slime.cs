@@ -6,14 +6,15 @@ public class Slime : MonoBehaviour {
     public Animator anim;
     Rigidbody2D ridgid;
     bool jump;
-    public int jumpforce;
+    public float jumpforce;
     public float walkforce;
     float distance;
-    public int walktime = 0;
-    public int walkTimeLimit = 50;
+   
     public float speedLimit;
-    public int 
-    int key = 1;
+    int key;
+    float walktime;
+    float walkTimeLimit;
+   
     public Vector2 direction;
     bool jump1 = false;
     GameObject player;
