@@ -6,12 +6,12 @@ public class boss : MonoBehaviour {
     public Animator anim;
     Rigidbody2D ridgid;
     bool jump;
-    public float jumpforce;
+    
     public float walkforce;
     float distance;
     float distance1;
 
-    public float speedLimit;
+   
     int key;
     float walktime;
     float walkTimeLimit;
@@ -46,17 +46,17 @@ public class boss : MonoBehaviour {
             if (distance1 < 18)
             {
                 {
-                    speedLimit = 2;
+                    
                     jump1 = true;
                     anim.SetBool("idil", false);
                     if (deltaX > 0)
                     {
-                        transform.localScale = new Vector3(-1, 1, 1);
+                        transform.localScale = new Vector3(-5, 5, 5);
                         key = -1;
                     }
                     if (deltaX < 0)
                     {
-                        transform.localScale = new Vector3(1, 1, 1);
+                        transform.localScale = new Vector3(5, 5, 5);
                         key = 1;
                     }
 
@@ -64,14 +64,11 @@ public class boss : MonoBehaviour {
             }
             else
             {
-                speedLimit = 0;
+               
                 anim.SetBool("idil", true);
             }
-        if (ridgid.velocity.x < speedLimit && -speedLimit < ridgid.velocity.x)
-        {
-            ridgid.AddForce(new Vector3(key * walkforce, 0, 0));
-        }
-
+        
+       
 
 
 
