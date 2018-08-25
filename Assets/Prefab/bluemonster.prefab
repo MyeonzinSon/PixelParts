@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cdaa481f69d854c9db2a2dc62deb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   jumpforce: 450
   walkforce: 15
   walktime: 50
