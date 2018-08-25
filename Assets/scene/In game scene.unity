@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1755469796}
   - component: {fileID: 1755469801}
   - component: {fileID: 1755469800}
+  - component: {fileID: 1755469802}
   m_Layer: 0
   m_Name: assasin
   m_TagString: Untagged
@@ -357,3 +358,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
+--- !u!114 &1755469802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755469795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d9e4540d69a77342a6ac0070b2d41cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
