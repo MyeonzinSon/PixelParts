@@ -2,48 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime : MonoBehaviour {
-    public Animator anim;
+public class pet : MonoBehaviour
+{
+
     Rigidbody2D ridgid;
-    bool jump;
+
     public int jumpforce;
     public float walkforce;
     float distance;
     public int walktime = 0;
     public int walkTimeLimit = 50;
     public float speedLimit;
-    public int 
     int key = 1;
     public Vector2 direction;
     bool jump1 = false;
     GameObject player;
+
+    int stopCount;
+    float xPast;
     // Use this for initialization
-    void Start () {
-        anim = GetComponent<Animator>();
+    void Start()
+    {
+
         player = GameObject.Find("player");
         this.ridgid = GetComponent<Rigidbody2D>();
-        jump = false;
-	}
+
+    }
 
     // Update is called once per frame
-   
-        void OnCollisionStay2D(Collision2D coll)
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (jump1 == true && this.ridgid.velocity.y < 0.1f)
         {
-            if (jump1 == true && this.ridgid.velocity.y < 0.1f)
+            this.ridgid.AddForce(transform.up * this.jumpforce);
+        }
+    }
+
+    void Update()
+    {
+        if(Mathf.Abs(xPast - transform.position.x) < 0.01f)
+        {
+            stopCount += 1;
+            if (stopCount > 15)
             {
-                this.ridgid.AddForce(transform.up * this.jumpforce);
+                if (jump1 == true && this.ridgid.velocity.y < 0.1f)
+                {
+                    this.ridgid.AddForce(transform.up * this.jumpforce);
+                }
+                stopCount = 0;
             }
         }
-    
-    void Update () {
+        else
+        {
+            stopCount = 0;
+        }
+
         Vector2 delta = transform.position - player.transform.position;
         distance = delta.magnitude;
         Debug.Log(distance);
         float deltaX = delta.x;
-        if (distance < 15)
+        if (distance > 10)
         {
             jump1 = true;
-            anim.SetBool("jump", true);
+
             if (deltaX > 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
@@ -51,38 +73,28 @@ public class Slime : MonoBehaviour {
             }
             if (deltaX < 0)
             {
-                transform.localScale = new Vector3(1 , 1, 1);
+                transform.localScale = new Vector3(1, 1, 1);
                 key = 1;
             }
 
         }
-        else
-        {
-            jump1 = false;
-            anim.SetBool("jump", false);
-            if (walktime >= walkTimeLimit)
-            {
-                key = 1;
-            }
-            if (walktime < -walkTimeLimit)
-            {
-                key = -1;
-            }
-            walktime -= key;
+      
+        
+           // jump1 = false;
 
-
+           
             if (key != 0)
             {
                 transform.localScale = new Vector3(key, 1, 1);
             }
-        }
-            if (ridgid.velocity.x < speedLimit && -speedLimit < ridgid.velocity.x)
-            {
-                ridgid.AddForce(new Vector3(key * walkforce, 0, 0));
-            }
-
-
         
+        if (ridgid.velocity.x < speedLimit && -speedLimit < ridgid.velocity.x)
+        {
+            ridgid.AddForce(new Vector3(key * walkforce, 0, 0));
+        }
 
+
+
+        xPast = transform.position.x;
     }
 }

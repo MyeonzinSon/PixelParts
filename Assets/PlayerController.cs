@@ -58,9 +58,10 @@ public class PlayerController : MonoBehaviour {
         {
             transform.Translate(+speed * Time.deltaTime, 0, 0);
         }
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.W) && isOnGround)
         {
             rb.AddForce(jumpForce * Vector2.up);
+            isOnGround = false;
             anim.SetBool("jump", true);
         }
         if (Input.GetKey(KeyCode.S))
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        isOnGround = true;
         anim.SetBool("jump", false);
     }
 >>>>>>> e42081b21d8fa4edf631cad9eeb7b8f7d2f18774
