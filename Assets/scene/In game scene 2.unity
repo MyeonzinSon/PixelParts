@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 75377612}
   - component: {fileID: 75377611}
   - component: {fileID: 75377613}
+  - component: {fileID: 75377614}
   m_Layer: 0
   m_Name: "portal \uBCF5\uC0AC"
   m_TagString: Untagged
@@ -464,6 +465,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df53a1364ef71a242a7dd02b6c883dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveTo: In game scene 3
+--- !u!61 &75377614
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 75377610}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.5, y: 2.5}
+    newSize: {x: 2.5, y: 2.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.52, y: 2.5}
+  m_EdgeRadius: 0
 --- !u!4 &76682640 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4475655480439578, guid: 7d2c36f6f6fec4d478a599cc78f07f87,
@@ -668,7 +695,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 135268749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: -0.3, z: 0}
+  m_LocalPosition: {x: -0.3, y: -0.3, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

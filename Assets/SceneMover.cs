@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneMover : MonoBehaviour {
-
 	// Use this for initialization
 	void Start () {
 		
@@ -15,8 +14,8 @@ public class SceneMover : MonoBehaviour {
 		
 	}
 
-    public void click()
+    public void MoveScene()
     {
-        SceneManager.LoadScene("In game scene 2");
+        SceneManager.LoadScene("In game scene");
     }
 }
