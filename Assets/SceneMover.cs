@@ -15,7 +15,7 @@ public class SceneMover : MonoBehaviour {
 		
 	}
 
-    void MoveScene()
+    public void click()
     {
         SceneManager.LoadScene("In game scene");
     }
