@@ -9,7 +9,7 @@ public class Slime : MonoBehaviour {
     public float jumpforce;
     public float walkforce;
     float distance;
-   
+    public int health;
     public float speedLimit;
     int key;
     float walktime;
@@ -28,13 +28,13 @@ public class Slime : MonoBehaviour {
 
     // Update is called once per frame
    
-        void OnCollisionStay2D(Collision2D coll)
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (jump1 == true && this.ridgid.velocity.y < 0.1f)
         {
-            if (jump1 == true && this.ridgid.velocity.y < 0.1f)
-            {
-                this.ridgid.AddForce(transform.up * this.jumpforce);
-            }
+            this.ridgid.AddForce(transform.up * this.jumpforce);
         }
+    }
     
     void Update () {
         Vector2 delta = transform.position - player.transform.position;
@@ -77,13 +77,23 @@ public class Slime : MonoBehaviour {
                 transform.localScale = new Vector3(key, 1, 1);
             }
         }
-            if (ridgid.velocity.x < speedLimit && -speedLimit < ridgid.velocity.x)
-            {
-                ridgid.AddForce(new Vector3(key * walkforce, 0, 0));
-            }
 
-
+        if (ridgid.velocity.x < speedLimit && -speedLimit < ridgid.velocity.x)
+        {
+            ridgid.AddForce(new Vector3(key * walkforce, 0, 0));
+        }
+    }
         
+    public void Damage(int value)
+    {
+        health -= value;
 
+        //TODO : 대미지를 받을 때 파티클 부르는 코드
+        if (health <= 0)
+        {
+            //TODO : 죽을 때 파티클 부르는 코드
+
+            Destroy(gameObject);
+        }
     }
 }
