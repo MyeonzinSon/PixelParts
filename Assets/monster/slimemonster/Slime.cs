@@ -12,6 +12,7 @@ public class Slime : MonoBehaviour {
     public int walktime = 0;
     public int walkTimeLimit = 50;
     public float speedLimit;
+    public int 
     int key = 1;
     public Vector2 direction;
     bool jump1 = false;
