@@ -1,0 +1,48 @@
+hero
+
+assasin
+hp-200
+atk-270
+atk sp.-1.5sec
+def- x
+jump-180pixel
+movement sp.- 115 per sec
+
+tanker
+hp-300
+atk-150
+atk sp.-2sec
+def-x
+jump-180pixel
+movement sp.- 115 per sec
+
+companion
+-no stats
+-follows the character 275 pixels behind
+
+map
+1(higher tier item)-basic monster&one middle monster as boss
+2(higher tier item)-basic monster&5middle monsters and one high monster as boss
+3(higher tier item)~3-5 boss stage-all monsters, one boss as final boss
+-all monsters killed--portal--moves to next stage
+-portal 50% highest block 50% most right
+-3 block always, 2of them randomly has enemy
+
+
+Items
+0tier(legendary)-legendary sword
+1tier-sword
+2tier-pan
+3tier-pan
+4tier-50%dagger 50%bat
+
+Monster
+health
+-basic-500
+-middle-850
+-high-1000
+-boss-5000
+
+Portal
+-show a short transition, loading clip
+
