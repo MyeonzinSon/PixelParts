@@ -11,6 +11,17 @@ public class Weapon : MonoBehaviour {
     public float knockBack = 1;
     bool canAttack = true;
     bool isAttacking = false;
+    int _direction;
+    int Direction{
+        get{
+            return _direction;
+        }
+        set{
+            if (value == 1 || value == -1){
+                _direction = value;
+            }
+        }
+    }
     float timer;
     float cooldown;
     float cooldownReduce = 1;
@@ -19,18 +30,19 @@ public class Weapon : MonoBehaviour {
     void Start(){
         player = GameManager.Instance.player;
         transform.SetParent(player.hand);
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = Vector3.zero + Vector3.back;
         filter.SetLayerMask(LayerMask.GetMask("Monster"));
+        Direction = 1;
     }
 	void Update () {
-        
+        Direction = player.Direction;
 		if (isAttacking) {
             if (timer < attackTime) {
                 timer += Time.deltaTime;
                 float rate = timer/attackTime;
 
                 Quaternion quat = Quaternion.identity;
-                quat.eulerAngles = new Vector3(0, 0, -135 * player.Direction * rate);
+                quat.eulerAngles = new Vector3(0, 0, -135 * Direction * rate);
                 transform.rotation = quat;
             } else {
                 isAttacking = false;
