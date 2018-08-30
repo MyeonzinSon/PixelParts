@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour
     public float walkPeriod;
     public float walkSpeed;
     
-    int HP;
+    int hp;
     float walkTimer;
     int _direction;
     public int Direction {
@@ -45,7 +45,7 @@ public class Monster : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();  
         anim = GetComponent<Animator>();
         Direction = -1;
-        HP = maxHP;
+        hp = maxHP;
         isJumping = new AnimatorTriggerBool(anim, "jump", false);
         isAttacking = new AnimatorTriggerBool(anim, "attack", false);
     }
@@ -63,6 +63,8 @@ public class Monster : MonoBehaviour
     }
 
     void Update() {
+        if(hp <= 0) return;
+        
         delta = player.transform.position - transform.position;
         float distance = delta.magnitude;
 
@@ -102,11 +104,11 @@ public class Monster : MonoBehaviour
     }
 
     public void TakeDamage(int damage){
-        HP -= damage;
-        hpBar.SetCurrentHP(HP);
+        hp -= damage;
+        hpBar.SetCurrentHP(hp);
         rb.AddForce(-1 * delta.normalized * jumpforce);
 
-        if (HP <= 0){
+        if (hp <= 0){
             float deathDuration = 0;
             if(anim != null && anim.parameters.Any(a => a.name == "die")) {
                 anim.SetTrigger("die");
