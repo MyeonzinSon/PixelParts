@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
     public int maxHP;
     public float speed;
     public float jumpForce;
+    public int strength;
+    public float attackPeriodReduce;
     public GameObject weaponGO;
     public Transform hand;
     int hp;
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour {
     Weapon weapon;
 	
 	void Start () {
+        GameManager.Instance.playerGO = gameObject;
         hp = maxHP;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();

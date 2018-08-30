@@ -78,10 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c156c6d52d16f4b93ce5be7a9b7a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPoint: 1
+  attackPoint: 5
   attackPeriod: 1
   attackTime: 0.2
   knockBack: 1
+  isMelee: 1
 --- !u!212 &212746464783942554
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,7 +119,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bef8adc1a54d35d4398653cbdc171c72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.12, y: 3.04}

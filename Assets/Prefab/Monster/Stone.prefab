@@ -189,14 +189,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d8bf0d7dcee9b4186d4c2da1f9ac43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 10
+  maxHP: 500
   attackPower: 2
-  attackRange: 3
-  chaseRange: 10
-  jumpforce: 200
+  attackRange: 2
+  chaseRange: 4
+  jumpforce: 100
   walkForce: 10
   walkPeriod: 1
-  walkSpeed: 10
+  walkSpeed: 2
 --- !u!114 &114573210949997974
 MonoBehaviour:
   m_ObjectHideFlags: 1

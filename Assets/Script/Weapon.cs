@@ -30,6 +30,8 @@ public class Weapon : MonoBehaviour {
     ContactFilter2D filter = new ContactFilter2D();
     void Start(){
         player = GameManager.Instance.player;
+        player.EquipWeapon(gameObject);
+        cooldownReduce = player.attackPeriodReduce;
         transform.SetParent(player.hand);
         transform.localPosition = Vector3.zero + Vector3.back;
         filter.SetLayerMask(LayerMask.GetMask("Monster"));
@@ -39,7 +41,7 @@ public class Weapon : MonoBehaviour {
         Direction = player.Direction;
 		if (isAttacking) {
             if (timer < attackTime) {
-                timer += Time.deltaTime;
+                timer += Time.deltaTime / cooldownReduce;
                 float rate = timer/attackTime;
 
                 if(isMelee){
@@ -71,7 +73,7 @@ public class Weapon : MonoBehaviour {
     }
     void DealDamageMelee(Collider2D other){
         if (other != null && other.gameObject.GetComponent<Monster>() != null && isAttacking){
-            other.gameObject.GetComponent<Monster>().TakeDamage(attackPoint);
+            other.gameObject.GetComponent<Monster>().TakeDamage(attackPoint * player.strength);
         }
     }
     public void Attack()

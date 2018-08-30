@@ -64,7 +64,7 @@ public class Monster : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coll){
         if (coll.gameObject.GetComponent<Player>() != null){
             coll.gameObject.GetComponent<Player>().TakeDamage(attackPower);
-            rb.AddForce(-2 * delta.normalized * jumpforce);
+            rb.AddForce(-1 * delta.normalized * jumpforce);
         }
     }
     void OnCollisionStay2D(Collision2D coll) {
@@ -162,7 +162,7 @@ public class Monster : MonoBehaviour
     public void TakeDamage(int damage){
         hp -= damage;
         hpBar.SetCurrentHP(hp);
-        rb.AddForce(-1 * delta.normalized * jumpforce);
+        rb.AddForce(-0.5f * delta.normalized * jumpforce);
 
         if (hp <= 0){
             float deathDuration = 0;
