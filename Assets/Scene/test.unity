@@ -763,26 +763,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114903614854772656, guid: e2066ed9244a2ed48b5a8c4be0dafdcc,
-        type: 2}
-      propertyPath: maxHP
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114903614854772656, guid: e2066ed9244a2ed48b5a8c4be0dafdcc,
-        type: 2}
-      propertyPath: attackRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114903614854772656, guid: e2066ed9244a2ed48b5a8c4be0dafdcc,
-        type: 2}
-      propertyPath: chaseRange
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114903614854772656, guid: e2066ed9244a2ed48b5a8c4be0dafdcc,
-        type: 2}
-      propertyPath: walkSpeed
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2066ed9244a2ed48b5a8c4be0dafdcc, type: 2}
   m_IsPrefabParent: 0
