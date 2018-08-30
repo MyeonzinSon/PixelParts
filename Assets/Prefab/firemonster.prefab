@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114752258130856536}
   - component: {fileID: 95258638325572640}
   m_Layer: 9
-  m_Name: Firemonster
+  m_Name: firemonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

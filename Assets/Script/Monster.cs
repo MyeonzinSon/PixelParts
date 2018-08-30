@@ -18,6 +18,10 @@ public class Monster : MonoBehaviour
     public float walkPeriod;
     public float walkSpeed;
     
+    bool isBoss = false;
+    public bool shootFireBall{
+        get; private set; 
+    }
     int hp;
     float walkTimer;
     int _direction;
@@ -36,6 +40,7 @@ public class Monster : MonoBehaviour
     }
     AnimatorTriggerBool isJumping;
     AnimatorTriggerBool isAttacking;
+    public AnimatorTriggerBool isWalking { get; private set; }
     GameObject player;
     HPBar hpBar;
     Vector2 delta;
@@ -46,8 +51,14 @@ public class Monster : MonoBehaviour
         anim = GetComponent<Animator>();
         Direction = -1;
         hp = maxHP;
-        isJumping = new AnimatorTriggerBool(anim, "jump", false);
-        isAttacking = new AnimatorTriggerBool(anim, "attack", false);
+        isBoss = GetComponent<BossAttack>() != null;
+        if (isBoss) {
+            isWalking = new AnimatorTriggerBool(anim, "walk", false);
+            GetComponent<BossAttack>().StartPattern();
+        } else {
+            isJumping = new AnimatorTriggerBool(anim, "jump", false);
+            isAttacking = new AnimatorTriggerBool(anim, "attack", false);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D coll){
@@ -57,7 +68,7 @@ public class Monster : MonoBehaviour
         }
     }
     void OnCollisionStay2D(Collision2D coll) {
-        if (isJumping == true && this.rb.velocity.y < 0.1f) {
+        if (!isBoss && isJumping == true && this.rb.velocity.y < 0.1f) {
             rb.AddForce(transform.up * jumpforce);
         }
     }
@@ -66,6 +77,53 @@ public class Monster : MonoBehaviour
         if(hp <= 0) return;
         
         delta = player.transform.position - transform.position;
+
+        if (isBoss){
+            BossMove();
+        } else {
+            NormalMove();
+        }
+
+        Cheat();
+    }
+    void BossMove(){
+        float distance = delta.magnitude;
+
+        if (distance < attackRange){
+            isWalking.Set(true);
+            shootFireBall = false;
+
+            if (delta.x > 0) {
+                Direction = -1;
+            } else {
+                Direction = 1;
+            }
+        } else if (distance > chaseRange){
+            isWalking.Set(true);
+            shootFireBall = true;
+
+            if (delta.x > 0) {
+                Direction = 1;
+            } else {
+                Direction = -1;
+            }
+        } else {
+            isWalking.Set(false);
+            shootFireBall = true;
+            
+            if (delta.x > 0) {
+                Direction = 1;
+            } else {
+                Direction = -1;
+            }
+            Direction = 0;
+        }
+
+        if (-walkSpeed < rb.velocity.x && rb.velocity.x < walkSpeed) {
+            rb.AddForce(new Vector3(Direction * walkForce, 0, 0));
+        }
+    }
+    void NormalMove(){
         float distance = delta.magnitude;
 
         if (distance < attackRange){
@@ -94,8 +152,6 @@ public class Monster : MonoBehaviour
         if (-walkSpeed < rb.velocity.x && rb.velocity.x < walkSpeed) {
             rb.AddForce(new Vector3(Direction * walkForce, 0, 0));
         }
-
-        Cheat();
     }
     void Cheat(){
         if (Input.GetKeyDown(KeyCode.H)){
@@ -113,6 +169,9 @@ public class Monster : MonoBehaviour
             if(anim != null && anim.parameters.Any(a => a.name == "die")) {
                 anim.SetTrigger("die");
                 deathDuration = 0.5f;
+            }
+            if(isBoss){
+                GetComponent<BossAttack>().DestroyAll();
             }
             Destroy(gameObject, deathDuration);
         }
