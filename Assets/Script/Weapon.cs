@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour {
     public float attackPeriod;
     public float attackTime = 0.2f;
     public float knockBack = 1;
+    public bool isMelee = true;
     bool canAttack = true;
     bool isAttacking = false;
     int _direction;
@@ -41,25 +42,34 @@ public class Weapon : MonoBehaviour {
                 timer += Time.deltaTime;
                 float rate = timer/attackTime;
 
-                Quaternion quat = Quaternion.identity;
-                quat.eulerAngles = new Vector3(0, 0, -135 * Direction * rate);
-                transform.rotation = quat;
+                if(isMelee){
+                    Quaternion quat = Quaternion.identity;
+                    quat.eulerAngles = new Vector3(0, 0, -135 * Direction * Tween.Pow(timer,0,attackTime,1));
+                    transform.rotation = quat;
+                }
             } else {
                 isAttacking = false;
-                transform.rotation = Quaternion.identity;
             }
         }
         if (!canAttack) {
             cooldown -= Time.deltaTime / cooldownReduce;
             if (cooldown <= 0) {
+                cooldown = 0;
                 canAttack = true;
+            }
+            if (!isAttacking && isMelee){
+                Quaternion quat = Quaternion.identity;
+                quat.eulerAngles = new Vector3(0, 0, -135 * Direction * Tween.Pow(cooldown, 0, (attackPeriod - attackTime), 1));
+                transform.rotation = quat;
             }
         }
 	}
     void OnTriggerEnter2D(Collider2D other){
-        DealDamage(other);
+        if(isMelee){
+            DealDamageMelee(other);
+        }
     }
-    void DealDamage(Collider2D other){
+    void DealDamageMelee(Collider2D other){
         if (other != null && other.gameObject.GetComponent<Monster>() != null && isAttacking){
             other.gameObject.GetComponent<Monster>().TakeDamage(attackPoint);
         }
@@ -74,11 +84,13 @@ public class Weapon : MonoBehaviour {
             cooldown = attackPeriod;
 
             Collider2D[] results = new Collider2D[255];
-            int count = Physics2D.OverlapCollider(GetComponent<Collider2D>(), filter, results);
-            results.All(col => {
-                DealDamage(col);
-                return true;
-            });
+            if (isMelee){
+                int count = Physics2D.OverlapCollider(GetComponent<Collider2D>(), filter, results);
+                results.All(col => {
+                    DealDamageMelee(col);
+                    return true;
+                });
+            }
         } else {
             Debug.Log("Weapon is on cooldown! Remain time = " + cooldown);
         }

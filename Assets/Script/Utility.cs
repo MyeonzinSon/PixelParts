@@ -29,3 +29,11 @@ public class AnimatorTriggerBool{
         return b.value;
     }
 }
+
+public class Tween{
+    public static float Pow(float current, float min, float max, int power = 5){
+        float currentRate = (current - min) / (max - min);
+        float result = 1-Mathf.Pow(1-currentRate, power);
+        return result;
+    }
+}
