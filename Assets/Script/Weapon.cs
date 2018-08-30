@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour {
     public int attackPoint;
     public float attackPeriod;
     public float attackTime = 0.2f;
+    public float knockBack = 1;
     bool canAttack = true;
     bool isAttacking = false;
     float timer;

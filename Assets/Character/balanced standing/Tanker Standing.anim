@@ -3,9 +3,9 @@
 --- !u!74 &7400000
 AnimationClip:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: assasin-jumping
+  m_Name: Tanker Standing
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,11 +19,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: ee5df79009c3cbb42a99d469c7494023, type: 3}
+      value: {fileID: 21300000, guid: 6d1b506d65c5cee4291cbf0e83488b9b, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 2248b37e434fe5e43b29dbc27b7d50e0, type: 3}
+      value: {fileID: 21300000, guid: 7715f79908a36f940a79f7cc0b302d57, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 606ef4ff8420d484695beda74a51e917, type: 3}
+      value: {fileID: 21300000, guid: 632d9227d2c9f9e49bbfa1ad194a80c4, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 24d3ffe9e49182e42b1c35f0c55b54d8, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,15 +45,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ee5df79009c3cbb42a99d469c7494023, type: 3}
-    - {fileID: 21300000, guid: 2248b37e434fe5e43b29dbc27b7d50e0, type: 3}
-    - {fileID: 21300000, guid: 606ef4ff8420d484695beda74a51e917, type: 3}
+    - {fileID: 21300000, guid: 6d1b506d65c5cee4291cbf0e83488b9b, type: 3}
+    - {fileID: 21300000, guid: 7715f79908a36f940a79f7cc0b302d57, type: 3}
+    - {fileID: 21300000, guid: 632d9227d2c9f9e49bbfa1ad194a80c4, type: 3}
+    - {fileID: 21300000, guid: 24d3ffe9e49182e42b1c35f0c55b54d8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

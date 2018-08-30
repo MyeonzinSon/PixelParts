@@ -24,11 +24,14 @@ public class Player : MonoBehaviour {
                 _direction = -1;
                 Vector3 scale = transform.localScale;
                 transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
+            } else if (value == 0){
+                _direction = 0;
             }
         }
     }
     bool isOnGround;
     AnimatorTriggerBool isJumping;
+    AnimatorTriggerBool isWalking;
     Animator anim;
     Rigidbody2D rb;
     Weapon weapon;
@@ -38,13 +41,25 @@ public class Player : MonoBehaviour {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         isJumping = new AnimatorTriggerBool(anim, "jump");
+        isWalking = new AnimatorTriggerBool(anim, "walk");
         if (weaponGO != null){
             EquipWeapon(weaponGO);
         }
 	}
-	
 	void Update () {
+        
+        Direction = 0;
+
 		InputKey();
+
+        if (Direction == 0 && isWalking){
+            isWalking.Set(false);
+        }
+        if ((Direction == 1 || Direction == -1) && !isWalking){
+            isWalking.Set(true);
+        }
+
+        transform.Translate(Direction *speed * Time.deltaTime, 0, 0);
     }
     private void OnCollisionEnter2D(Collision2D collision){
         isOnGround = true;
@@ -53,13 +68,11 @@ public class Player : MonoBehaviour {
     void InputKey(){
         if (Input.GetKey(KeyCode.A)) {
             Direction = -1;
-            transform.Translate(Direction *speed * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.D)) {
             Direction = 1;
-            transform.Translate(Direction *speed * Time.deltaTime, 0, 0);
         }
-        if(Input.GetKeyDown(KeyCode.W) && isOnGround) {
+        if(Input.GetKey(KeyCode.W) && isOnGround) {
             rb.AddForce(jumpForce * Vector2.up);
             isOnGround = false;
             isJumping.Set(true);
@@ -71,6 +84,14 @@ public class Player : MonoBehaviour {
             if (weapon != null){
                 weapon.Attack();
             }
+        }
+    }
+    public void TakeDamage(int damage){
+        hp -= damage;
+        Debug.Log("HP : "+hp);
+
+        if (hp <= 0){
+            Debug.Log("You are dead!");
         }
     }
     public void EquipWeapon(GameObject wp){

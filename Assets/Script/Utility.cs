@@ -21,8 +21,8 @@ public class AnimatorTriggerBool{
     }
     public void Set(bool input){
         value = input;
-        if (animator != null && animator.parameters.Any(a => a.name == "jump")){
-            animator.SetBool("jump", value);
+        if (animator != null && animator.parameters.Any(a => a.name == this.name)){
+            animator.SetBool(name, value);
         }
     }
     public static implicit operator bool(AnimatorTriggerBool b){
