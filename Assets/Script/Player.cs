@@ -100,11 +100,16 @@ public class Player : MonoBehaviour {
     public void EquipWeapon(GameObject wp){
         Weapon weaponComp = wp.GetComponent<Weapon>();
         if (weaponComp != null){
-            if (wp != weaponGO) {
-                Destroy(weaponGO);
+            if (weaponGO != null) {
+                ThrowOldWeapon(weaponGO);
             }
             weaponGO = wp;
             weapon = weaponComp;
         }
+    }
+    void ThrowOldWeapon(GameObject wpGO){
+        wpGO.GetComponent<Weapon>().Unequip();
+        var wprb = wpGO.AddComponent<Rigidbody2D>();
+        wprb.AddForce(jumpForce * Vector2.up);
     }
 }

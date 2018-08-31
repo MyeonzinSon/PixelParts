@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour {
     public float attackTime = 0.2f;
     public float knockBack = 1;
     public bool isMelee = true;
+    bool isEquipped = false;
     bool canAttack = true;
     bool isAttacking = false;
     int _direction;
@@ -28,16 +29,35 @@ public class Weapon : MonoBehaviour {
     float cooldownReduce = 1;
     Player player;
     ContactFilter2D filter = new ContactFilter2D();
+
     void Start(){
         player = GameManager.Instance.player;
-        player.EquipWeapon(gameObject);
+    }
+    void Equip(){
+        isEquipped = true;
+        if(GetComponent<Rigidbody2D>() != null){
+            Destroy(GetComponent<Rigidbody2D>());
+        }
+        GetComponent<BoxCollider2D>().isTrigger = true;
         cooldownReduce = player.attackPeriodReduce;
         transform.SetParent(player.hand);
         transform.localPosition = Vector3.zero + Vector3.back;
+        transform.rotation = Quaternion.identity;
         filter.SetLayerMask(LayerMask.GetMask("Monster"));
         Direction = 1;
+        canAttack = true;
+        isAttacking = false;
+    }
+    public void Unequip(){
+        isEquipped = false;
+        transform.SetParent(null, true);
+        transform.rotation = Quaternion.identity;
+        GetComponent<BoxCollider2D>().isTrigger = false;
+        transform.Translate(2 * Vector2.up);
     }
 	void Update () {
+        if (!isEquipped) return;
+
         Direction = player.Direction;
 		if (isAttacking) {
             if (timer < attackTime) {
@@ -67,8 +87,18 @@ public class Weapon : MonoBehaviour {
         }
 	}
     void OnTriggerEnter2D(Collider2D other){
-        if(isMelee){
+        if (!isEquipped && other.GetComponent<Player>()){
+            player.EquipWeapon(gameObject);
+            Equip();
+        }
+        if(isEquipped && isMelee){
             DealDamageMelee(other);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D other){
+        if (!isEquipped && other.gameObject.GetComponent<Player>()){
+            player.EquipWeapon(gameObject);
+            Equip();
         }
     }
     void DealDamageMelee(Collider2D other){
@@ -78,6 +108,8 @@ public class Weapon : MonoBehaviour {
     }
     public void Attack()
     {
+        if(!isEquipped) return;
+
         if (canAttack)
         {
             canAttack = false;
@@ -96,9 +128,5 @@ public class Weapon : MonoBehaviour {
         } else {
             Debug.Log("Weapon is on cooldown! Remain time = " + cooldown);
         }
-    }
-
-    public void SetCooldownReduce(float value) {
-        cooldownReduce = value;
     }
 }

@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour {
     GameObject player;
-    // Use this for initialization
     
     void Start () {
 	    player = GameManager.Instance.playerGO;
     }
-    // Update is called once per frame
     void Update () {
-        transform.position = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
+        float x = player.transform.position.x;
+        if (x > 32) {
+            x = 32;
+        }
+        if (x < -32) {
+            x = -32;
+        }
+        float y = player.transform.position.y;
+        if (y > 0.4) {
+            y = 0.4f;
+        }
+        if (y < -0.4) {
+            y = -0.4f;
+        }
+        transform.position = new Vector3(x, y, transform.position.z);
     }
 
 }
