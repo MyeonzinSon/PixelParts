@@ -7,14 +7,17 @@ public class HPBar : MonoBehaviour {
     public GameObject maxBar;
     public GameObject currentBar;
 
-    Monster parentMonster;
     int maxHP;
     int currentHP;
 
 	void Start () {
-        parentMonster = GetComponentInParent<Monster>();
+        Monster parentMonster = GetComponentInParent<Monster>();
 		if (parentMonster != null){
             parentMonster.ConnectWithHPBar(this);
+        }
+        Player parentCharacter = GetComponentInParent<Player>();
+        if (parentCharacter != null) {
+            parentCharacter.ConnectWithHPBar(this);
         }
 	}
 

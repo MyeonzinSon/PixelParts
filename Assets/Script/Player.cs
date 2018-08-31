@@ -39,6 +39,7 @@ public class Player : MonoBehaviour {
     Animator anim;
     Rigidbody2D rb;
     Weapon weapon;
+    HPBar hpBar;
 	
 	void Start () {
         GameManager.Instance.playerGO = gameObject;
@@ -94,6 +95,7 @@ public class Player : MonoBehaviour {
     }
     public void TakeDamage(int damage){
         hp -= damage;
+        hpBar.SetCurrentHP(hp);
 
         if (hp <= 0){
             Debug.Log("You are dead!");
@@ -101,6 +103,7 @@ public class Player : MonoBehaviour {
     }
     public void GetHealed(){
         hp += maxHP / 50;
+        hpBar.SetCurrentHP(hp);
 
         if (hp >= maxHP){
             hp = maxHP;
@@ -129,5 +132,9 @@ public class Player : MonoBehaviour {
             comp.ShootHeart();
             return true;
         });
+    }
+    public void ConnectWithHPBar(HPBar bar){
+        hpBar = bar;
+        hpBar.SetMaxHP(maxHP);
     }
 }

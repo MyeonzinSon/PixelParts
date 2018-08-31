@@ -28,10 +28,12 @@ public class Weapon : MonoBehaviour {
     float cooldown;
     float cooldownReduce = 1;
     Player player;
+    AudioSource audio;
     ContactFilter2D filter = new ContactFilter2D();
 
     void Start(){
         player = GameManager.Instance.player;
+        audio = GetComponent<AudioSource>();
     }
     void Equip(){
         isEquipped = true;
@@ -116,6 +118,7 @@ public class Weapon : MonoBehaviour {
             isAttacking = true;
             timer = 0;
             cooldown = attackPeriod;
+            audio.Play();
 
             Collider2D[] results = new Collider2D[255];
             if (isMelee){
