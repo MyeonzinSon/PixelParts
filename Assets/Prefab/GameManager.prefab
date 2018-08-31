@@ -60,3 +60,7 @@ MonoBehaviour:
   - {fileID: 1737533173834892, guid: c2bf7bc3aa5a70f458e3ac10cc979869, type: 2}
   - {fileID: 1181165553320312, guid: 4022a306a6f12f045b4cd025821ea324, type: 2}
   - {fileID: 1130220008405428, guid: 423c314a22c362a4592fef0116bb0149, type: 2}
+  companionPrizes:
+  - {fileID: 1038920545624338, guid: 89f5448380eef2d46bd0dcb5112ec240, type: 2}
+  - {fileID: 1654682232027754, guid: 85a258ffe60ce4a4584c39e0e9abf492, type: 2}
+  - {fileID: 1592085747031374, guid: 3406df7a9cc60944e8b41c61fd4f4782, type: 2}

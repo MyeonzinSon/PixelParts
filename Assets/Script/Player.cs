@@ -65,7 +65,7 @@ public class Player : MonoBehaviour {
             isWalking.Set(true);
         }
 
-        transform.Translate(Direction *speed * Time.deltaTime, 0, 0);
+        rb.velocity = new Vector2(Direction * speed, rb.velocity.y);
     }
     private void OnCollisionEnter2D(Collision2D collision){
         isOnGround = true;

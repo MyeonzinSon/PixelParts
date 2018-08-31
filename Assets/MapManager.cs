@@ -5,7 +5,6 @@ using UnityEngine;
 public class MapManager : MonoBehaviour {
 
 	List<Monster> monsterList;
-	public GameObject weaponPrize;
 	public string nextScene;
 	int initialCount;
 	bool halfPrized = false;
@@ -18,6 +17,10 @@ public class MapManager : MonoBehaviour {
 			m.ConnectWithMap(this);
 			return true;
 		});
+		
+		if (GameManager.Instance.player.weaponGO == null){
+			EarlyPrize();
+		}
 	}
 	public void MonsterRemoved(Monster monster){
 		if (monsterList.Contains(monster)){
@@ -30,6 +33,10 @@ public class MapManager : MonoBehaviour {
 				GameManager.Instance.NextPirze();
 			}
 		}
+	}
+	public void EarlyPrize(){
+		GameManager.Instance.NextPirze(true);
+		halfPrized = true;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){

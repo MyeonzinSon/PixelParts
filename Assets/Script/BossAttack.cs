@@ -8,6 +8,7 @@ public class BossAttack : MonoBehaviour {
     public GameObject fireBall;
     public GameObject blueSlime;
     List<GameObject> list;
+    MapManager door;
 
     Monster boss;
     public void StartPattern(){

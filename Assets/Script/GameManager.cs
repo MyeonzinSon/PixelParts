@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
     }	
     public void NextPirze(bool doWeaponPrize = false){
         if(doWeaponPrize){
-            NextWeaponPrize();
+            NextWeaponPrize(false);
             return;
         }
 
