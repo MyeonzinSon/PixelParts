@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 800
   speed: 5.3240743
-  jumpForce: 360
+  jumpForce: 300
   strength: 15
   attackPeriodReduce: 1
   weaponGO: {fileID: 0}

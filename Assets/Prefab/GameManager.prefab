@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1358695080820158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7319977, y: -0.62620586, z: -0.20168802}
+  m_LocalPosition: {x: 0, y: 0, z: -0.20168802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,3 +54,9 @@ MonoBehaviour:
   playerGO: {fileID: 0}
   particlePrefab: {fileID: 1659572733827292, guid: 9d9451888fac1eb4c85129e65be52c6e,
     type: 2}
+  weaponPrizes:
+  - {fileID: 1834166086568790, guid: f80d3f3ada682a548a6f31d12eb99903, type: 2}
+  - {fileID: 1989680757955668, guid: 42dc3f907d1be4848b91da4af9379b0f, type: 2}
+  - {fileID: 1737533173834892, guid: c2bf7bc3aa5a70f458e3ac10cc979869, type: 2}
+  - {fileID: 1181165553320312, guid: 4022a306a6f12f045b4cd025821ea324, type: 2}
+  - {fileID: 1130220008405428, guid: 423c314a22c362a4592fef0116bb0149, type: 2}

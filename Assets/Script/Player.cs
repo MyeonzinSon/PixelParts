@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour {
     public float attackPeriodReduce;
     public GameObject weaponGO;
     public Transform hand;
+    public List<Companion> companions { get; private set; }
     int hp;
     int _direction;
     public int Direction{
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour {
         hp = maxHP;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        companions = new List<Companion>();
         isJumping = new AnimatorTriggerBool(anim, "jump");
         isWalking = new AnimatorTriggerBool(anim, "walk");
         if (weaponGO != null){
@@ -91,10 +94,16 @@ public class Player : MonoBehaviour {
     }
     public void TakeDamage(int damage){
         hp -= damage;
-        Debug.Log("HP : "+hp);
 
         if (hp <= 0){
             Debug.Log("You are dead!");
+        }
+    }
+    public void GetHealed(){
+        hp += maxHP / 50;
+
+        if (hp >= maxHP){
+            hp = maxHP;
         }
     }
     public void EquipWeapon(GameObject wp){
@@ -111,5 +120,14 @@ public class Player : MonoBehaviour {
         wpGO.GetComponent<Weapon>().Unequip();
         var wprb = wpGO.AddComponent<Rigidbody2D>();
         wprb.AddForce(jumpForce * Vector2.up);
+    }
+    public void RescueCompanion(Companion comp){
+        companions.Add(comp);
+    }
+    public void AskForCheer(){
+        companions.All(comp => {
+            comp.ShootHeart();
+            return true;
+        });
     }
 }

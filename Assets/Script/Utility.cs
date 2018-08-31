@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[SerializeField]
+public class MonsterDict{
+    GameObject monster;
+    Vector2 position;
+}
 public class AnimatorTriggerBool{
     bool value;
     Animator animator;

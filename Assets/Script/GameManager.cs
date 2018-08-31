@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     
@@ -33,13 +34,68 @@ public class GameManager : MonoBehaviour {
     }
     public GameObject playerGO;
     public GameObject particlePrefab;
-    public Queue<GameObject> particlePool = new Queue<GameObject>();
+    public GameObject[] weaponPrizes;
+    public GameObject[] companionPrizes;
+    int weaponPrizesIndex;
+    int companionPrizesIndex;
+    Queue<GameObject> particlePool = new Queue<GameObject>();
     public Player player{
         get{
             return playerGO.GetComponent<Player>();
         }
     }
-    void Start(){
+    public void MoveScene(string scene){
+        DontDestroyOnLoad(playerGO);
+        player.transform.position = 32 * Vector2.left;
+        int i = 0;
+        foreach(var comp in player.companions){
+            comp.gameObject.transform.position = (32 + i++) * Vector2.left;
+        }
+        SceneManager.LoadScene(scene);
+    }	
+    public void NextPirze(bool doWeaponPrize = false){
+        if(doWeaponPrize){
+            NextWeaponPrize();
+            return;
+        }
+
+        if(companionPrizesIndex < companionPrizes.Length && weaponPrizesIndex < weaponPrizes.Length){
+            if (Random.value > (float)weaponPrizes.Length / (float)(companionPrizes.Length + weaponPrizes.Length)) { 
+                NextCompanionPrize();
+            } else { 
+                NextWeaponPrize();
+            }
+        } else {
+            if(companionPrizesIndex == companionPrizes.Length) {
+                NextWeaponPrize();
+            } else if (weaponPrizesIndex == weaponPrizes.Length) {
+                NextCompanionPrize();
+            } else {
+                Debug.Log("There is no prizes now!");
+            }
+        }
+	}
+    void NextCompanionPrize(bool fallFromAbove = false){
+        if (!(companionPrizesIndex < companionPrizes.Length)){
+            companionPrizesIndex--;
+        }
+        var go = Instantiate(companionPrizes[companionPrizesIndex++]);
+		if (fallFromAbove){
+			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.up;
+		} else {
+			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.right;
+		}
+    }
+    void NextWeaponPrize(bool fallFromAbove = true){
+        if (!(weaponPrizesIndex < weaponPrizes.Length)){
+            weaponPrizesIndex--;
+        }
+        var go = Instantiate(weaponPrizes[weaponPrizesIndex++]);
+		if (fallFromAbove){
+			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.up;
+		} else {
+			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.right;
+		}
     }
     GameObject NewParticle(){
         var newGO = Instantiate(particlePrefab, transform);

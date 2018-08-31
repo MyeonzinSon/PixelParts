@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 850
-  attackPower: 3
+  attackPower: 7
   attackRange: 2
   chaseRange: 6
   jumpforce: 200

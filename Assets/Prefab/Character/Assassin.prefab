@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1230365328965062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.16413732}
+  m_LocalPosition: {x: -38.41, y: -1.24, z: -0.16413732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4528602887652706}
@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 200
-  speed: 10
-  jumpForce: 360
+  speed: 5.3240743
+  jumpForce: 300
   strength: 27
   attackPeriodReduce: 0.75
   weaponGO: {fileID: 0}

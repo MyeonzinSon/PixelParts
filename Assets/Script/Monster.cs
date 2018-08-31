@@ -44,6 +44,7 @@ public class Monster : MonoBehaviour
     GameObject player;
     HPBar hpBar;
     Vector2 delta;
+    MapManager map;
     void Start() {
         player = GameManager.Instance.playerGO;
         sr = GetComponent<SpriteRenderer>();
@@ -84,7 +85,6 @@ public class Monster : MonoBehaviour
             NormalMove();
         }
 
-        Cheat();
     }
     void BossMove(){
         float distance = delta.magnitude;
@@ -153,11 +153,6 @@ public class Monster : MonoBehaviour
             rb.AddForce(new Vector3(Direction * walkForce, 0, 0));
         }
     }
-    void Cheat(){
-        if (Input.GetKeyDown(KeyCode.H)){
-            TakeDamage(5);
-        }
-    }
 
     public void TakeDamage(int damage){
         hp -= damage;
@@ -174,10 +169,15 @@ public class Monster : MonoBehaviour
             if(isBoss){
                 GetComponent<BossAttack>().DestroyAll();
             }
+            GameManager.Instance.player.AskForCheer();
+            map.MonsterRemoved(this);
             Destroy(gameObject, deathDuration);
         }
     }
-
+    public void ConnectWithMap(MapManager mm){
+        map = mm;
+        Debug.Log("map connected!");
+    }
     public void ConnectWithHPBar(HPBar bar){
         hpBar = bar;
         hpBar.SetMaxHP(maxHP);

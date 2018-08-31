@@ -190,11 +190,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 500
-  attackPower: 2
+  attackPower: 3
   attackRange: 2
-  chaseRange: 4
+  chaseRange: 5
   jumpforce: 100
-  walkForce: 10
+  walkForce: 5
   walkPeriod: 1
   walkSpeed: 2
 --- !u!114 &114573210949997974
