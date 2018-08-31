@@ -16,6 +16,7 @@ public class SceneMover : MonoBehaviour {
 
     public void MoveScene()
     {
-        SceneManager.LoadScene("In game scene");
+		Intro.isFirst = false;
+        SceneManager.LoadScene("Introa");
     }
 }

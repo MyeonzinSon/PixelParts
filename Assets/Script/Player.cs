@@ -108,7 +108,7 @@ public class Player : MonoBehaviour {
         hpBar.SetCurrentHP(hp);
 
         if (hp <= 0){
-            Debug.Log("You are dead!");
+            GameManager.Instance.GameOver();
         }
     }
     public void GetHealed(){

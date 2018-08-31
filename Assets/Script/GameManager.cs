@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     
     private static GameManager _instance;
+    static bool isAssassin;
+    public static void ChooseCharacter(bool assassin){
+        isAssassin = assassin;
+    }
     public static GameManager Instance {
         get {
             if (_instance == null) {
@@ -30,11 +34,20 @@ public class GameManager : MonoBehaviour {
         }
 
         if (playerGO == null){
-            playerGO = FindObjectOfType<Player>().gameObject;
+            if(isAssassin){
+                var go = Instantiate(characterDict[0]);
+                go.transform.position = 38 * Vector2.left;
+                playerGO = go;
+            } else {
+                var go = Instantiate(characterDict[1]);
+                go.transform.position = 38 * Vector2.left;
+                playerGO = go;
+            }
         }
     }
     public GameObject playerGO;
     public GameObject particlePrefab;
+    public GameObject[] characterDict;
     public GameObject[] weaponPrizes;
     public GameObject[] companionPrizes;
     public List<Weapon> wastedWeapons;
@@ -45,6 +58,12 @@ public class GameManager : MonoBehaviour {
         get{
             return playerGO.GetComponent<Player>();
         }
+    }
+    public void GameOver(){
+        SceneManager.LoadScene("GameOver");
+    }
+    public void GameClear(){
+        SceneManager.LoadScene("GameClear");
     }
     public void MoveScene(string scene){
         DontDestroyOnLoad(playerGO);
@@ -62,7 +81,7 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(scene);
     }	
     void Update(){
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.PageDown))
         {
             NextPrize();
         }

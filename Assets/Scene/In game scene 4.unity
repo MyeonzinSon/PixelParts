@@ -162,6 +162,11 @@ Prefab:
       propertyPath: nextScene
       value: In game scene 5
       objectReference: {fileID: 0}
+    - target: {fileID: 82767027242162140, guid: 3ad7167a524105a46bdbe49b7b636cee,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b08bb8358b6755645867417d164ff67b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ad7167a524105a46bdbe49b7b636cee, type: 2}
   m_IsPrefabParent: 0

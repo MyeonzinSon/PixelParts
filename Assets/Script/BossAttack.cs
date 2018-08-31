@@ -23,6 +23,7 @@ public class BossAttack : MonoBehaviour {
             } 
             return true;
         });
+        GameManager.Instance.GameClear();
     }
 	
     IEnumerator Pattern(){

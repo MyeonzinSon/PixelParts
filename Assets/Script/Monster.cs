@@ -41,6 +41,7 @@ public class Monster : MonoBehaviour
     AnimatorTriggerBool isJumping;
     AnimatorTriggerBool isAttacking;
     public AnimatorTriggerBool isWalking { get; private set; }
+    float jumpTime;
     GameObject player;
     HPBar hpBar;
     Vector2 delta;
@@ -83,6 +84,15 @@ public class Monster : MonoBehaviour
             BossMove();
         } else {
             NormalMove();
+        }
+        
+        if(isJumping){
+            jumpTime += Time.deltaTime;
+            if (jumpTime > 1){
+                isJumping.Set(false);
+            } 
+        } else {
+            jumpTime = 0;
         }
 
     }
