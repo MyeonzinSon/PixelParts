@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour {
     public GameObject particlePrefab;
     public GameObject[] weaponPrizes;
     public GameObject[] companionPrizes;
+    public List<Weapon> wastedWeapons;
     int weaponPrizesIndex;
     int companionPrizesIndex;
     Queue<GameObject> particlePool = new Queue<GameObject>();
@@ -46,16 +48,28 @@ public class GameManager : MonoBehaviour {
     }
     public void MoveScene(string scene){
         DontDestroyOnLoad(playerGO);
+        foreach (var wp in wastedWeapons){
+            if(wp.gameObject != null){
+                Destroy(wp.gameObject);
+            }
+        }
+        wastedWeapons = new List<Weapon>();
         player.transform.position = 32 * Vector2.left;
         int i = 0;
         foreach(var comp in player.companions){
-            comp.gameObject.transform.position = (32 + i++) * Vector2.left;
+            comp.gameObject.transform.position = (36 + i++) * Vector2.left;
         }
         SceneManager.LoadScene(scene);
     }	
-    public void NextPirze(bool doWeaponPrize = false){
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            NextPrize();
+        }
+    }
+    public void NextPrize(bool doWeaponPrize = false){
         if(doWeaponPrize){
-            NextWeaponPrize(false);
+            NextWeaponPrize();
             return;
         }
 
@@ -75,27 +89,19 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
-    void NextCompanionPrize(bool fallFromAbove = false){
+    void NextCompanionPrize(){
         if (!(companionPrizesIndex < companionPrizes.Length)){
             companionPrizesIndex--;
         }
         var go = Instantiate(companionPrizes[companionPrizesIndex++]);
-		if (fallFromAbove){
-			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.up;
-		} else {
-			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.right;
-		}
+        go.transform.position = new Vector2(playerGO.transform.position.x + 2, -2);
     }
-    void NextWeaponPrize(bool fallFromAbove = true){
+    void NextWeaponPrize(){
         if (!(weaponPrizesIndex < weaponPrizes.Length)){
             weaponPrizesIndex--;
         }
         var go = Instantiate(weaponPrizes[weaponPrizesIndex++]);
-		if (fallFromAbove){
-			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.up;
-		} else {
-			go.transform.position = GameManager.Instance.playerGO.transform.position + 2 * Vector3.right;
-		}
+        go.transform.position = new Vector2(playerGO.transform.position.x + 2, -2);
     }
     GameObject NewParticle(){
         var newGO = Instantiate(particlePrefab, transform);
@@ -111,7 +117,7 @@ public class GameManager : MonoBehaviour {
         }
         go.transform.position = new Vector3(position.x, position.y, -3);
         Vector3 scale = player.transform.localScale;
-        go.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+        go.transform.localScale = new Vector3(-player.LastDirection * scale.x, scale.y, scale.z);
         go.SetActive(true);
     }
     public void EnqueueParticle(GameObject go){

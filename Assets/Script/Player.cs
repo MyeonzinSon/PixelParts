@@ -22,20 +22,29 @@ public class Player : MonoBehaviour {
         private set {
             if (value == 1){
                 _direction = 1;
-                Vector3 scale = transform.localScale;
-                transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+                LastDirection = 1;
+                sr.flipX = false;
+                Vector2 pos = hand.localPosition;
+                hand.localPosition = new Vector2(Mathf.Abs(pos.x), pos.y);
             } else if (value == -1) {
                 _direction = -1;
-                Vector3 scale = transform.localScale;
-                transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
+                LastDirection = -1;
+                sr.flipX = true;
+                Vector2 pos = hand.localPosition;
+                hand.localPosition = new Vector2(-Mathf.Abs(pos.x), pos.y);
             } else if (value == 0){
                 _direction = 0;
             }
         }
     }
+    public int LastDirection{
+        get;
+        private set;
+    }
     bool isOnGround;
     AnimatorTriggerBool isJumping;
     AnimatorTriggerBool isWalking;
+    SpriteRenderer sr;
     Animator anim;
     Rigidbody2D rb;
     Weapon weapon;
@@ -44,6 +53,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         GameManager.Instance.playerGO = gameObject;
         hp = maxHP;
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         companions = new List<Companion>();
@@ -73,21 +83,21 @@ public class Player : MonoBehaviour {
         isJumping.Set(false);
     }
     void InputKey(){
-        if (Input.GetKey(KeyCode.A)) {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
             Direction = -1;
         }
-        if (Input.GetKey(KeyCode.D)) {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
             Direction = 1;
         }
-        if(Input.GetKey(KeyCode.W) && isOnGround) {
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && isOnGround) {
             rb.AddForce(jumpForce * Vector2.up);
             isOnGround = false;
             isJumping.Set(true);
         }
-        if (Input.GetKey(KeyCode.S)) {
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
             transform.Translate(0, -speed * Time.deltaTime, 0);
         }
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.LeftControl)) {
             if (weapon != null){
                 weapon.Attack();
             }

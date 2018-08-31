@@ -42,6 +42,7 @@ public class Companion : MonoBehaviour
     void Start() {
         player = GameManager.Instance.playerGO;
         sr = GetComponent<SpriteRenderer>();
+        sr.color = new Vector4(0.5f, 0.5f, 0.5f, 1);
         rb = GetComponent<Rigidbody2D>();  
         rb.Sleep();
         anim = GetComponent<Animator>();
@@ -52,6 +53,7 @@ public class Companion : MonoBehaviour
     }
     void Rescue(){
         isRescued = true;
+        sr.color = Vector4.one;
         rb.WakeUp();
         anim.enabled = true;
         GameManager.Instance.player.RescueCompanion(this);

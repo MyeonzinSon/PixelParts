@@ -170,7 +170,9 @@ public class Monster : MonoBehaviour
                 GetComponent<BossAttack>().DestroyAll();
             }
             GameManager.Instance.player.AskForCheer();
-            map.MonsterRemoved(this);
+            if (map != null) {
+                map.MonsterRemoved(this);
+            }
             Destroy(gameObject, deathDuration);
         }
     }

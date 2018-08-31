@@ -34,9 +34,12 @@ public class Weapon : MonoBehaviour {
     void Start(){
         player = GameManager.Instance.player;
         audio = GetComponent<AudioSource>();
+        GetComponent<BoxCollider2D>().isTrigger = false;
+        GameManager.Instance.wastedWeapons.Add(this);
     }
     void Equip(){
         isEquipped = true;
+        GameManager.Instance.wastedWeapons.Remove(this);
         if(GetComponent<Rigidbody2D>() != null){
             Destroy(GetComponent<Rigidbody2D>());
         }
@@ -49,8 +52,10 @@ public class Weapon : MonoBehaviour {
         Direction = 1;
         canAttack = true;
         isAttacking = false;
+        audio.Play();
     }
     public void Unequip(){
+        GameManager.Instance.wastedWeapons.Add(this);
         isEquipped = false;
         transform.SetParent(null, true);
         transform.rotation = Quaternion.identity;

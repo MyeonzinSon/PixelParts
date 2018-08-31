@@ -157,6 +157,11 @@ Prefab:
       propertyPath: nextScene
       value: In game scene 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114974864234685526, guid: 3ad7167a524105a46bdbe49b7b636cee,
+        type: 2}
+      propertyPath: nextScene
+      value: In game scene 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ad7167a524105a46bdbe49b7b636cee, type: 2}
   m_IsPrefabParent: 0

@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4334001820488172}
   - component: {fileID: 212578430838278998}
+  - component: {fileID: 114974864234685526}
   - component: {fileID: 61262289465607480}
-  - component: {fileID: 114161010162783310}
   - component: {fileID: 82767027242162140}
   m_Layer: 0
   m_Name: MapManager
@@ -148,7 +148,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114161010162783310
+--- !u!114 &114974864234685526
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

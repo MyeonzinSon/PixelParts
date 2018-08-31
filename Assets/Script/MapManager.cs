@@ -28,14 +28,14 @@ public class MapManager : MonoBehaviour {
 			Debug.Log("monster removed");
 			if (!halfPrized && monsterList.Count <= initialCount/2){
 				halfPrized = true;
-				GameManager.Instance.NextPirze();
+				GameManager.Instance.NextPrize();
 			} else if (monsterList.Count < 1){
-				GameManager.Instance.NextPirze();
+				GameManager.Instance.NextPrize();
 			}
 		}
 	}
 	public void EarlyPrize(){
-		GameManager.Instance.NextPirze(true);
+		GameManager.Instance.NextPrize(true);
 		halfPrized = true;
 	}
 
