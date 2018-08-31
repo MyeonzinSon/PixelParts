@@ -162,6 +162,7 @@ public class Monster : MonoBehaviour
     public void TakeDamage(int damage){
         hp -= damage;
         hpBar.SetCurrentHP(hp);
+        GameManager.Instance.ShowParticle(transform.position);
         rb.AddForce(-0.5f * delta.normalized * jumpforce);
 
         if (hp <= 0){

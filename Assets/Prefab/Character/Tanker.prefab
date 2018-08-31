@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 50163925619623226}
   - component: {fileID: 95453679824594794}
   m_Layer: 8
-  m_Name: Tanker 1
+  m_Name: Tanker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
